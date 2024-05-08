@@ -79,7 +79,7 @@ class AccountAssetLine(models.Model):
     def _compute_values(self):
         self.depreciated_value = 0.0
         self.remaining_value = 0.0
-        dlines = self
+        dlines = self.asset_id.depreciation_line_ids
         if self.env.context.get("no_compute_asset_line_ids"):
             # skip compute for lines in unlink
             exclude_ids = self.env.context["no_compute_asset_line_ids"]
