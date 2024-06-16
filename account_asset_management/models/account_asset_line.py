@@ -114,13 +114,6 @@ class AccountAssetLine(models.Model):
         for line in self:
             line.move_check = bool(line.move_id)
 
-    @api.onchange("amount")
-    def _onchange_amount(self):
-        if self.type == "depreciate":
-            self.remaining_value = (
-                self.depreciation_base - self.depreciated_value - self.amount
-            )
-
     def write(self, vals):
         for dl in self:
             line_date = vals.get("line_date") or dl.line_date

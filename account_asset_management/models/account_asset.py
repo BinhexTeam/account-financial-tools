@@ -278,6 +278,17 @@ class AccountAsset(models.Model):
     def _default_company_id(self):
         return self.env.company
 
+    @api.onchange("depreciation_line_ids")
+    def _onchange_depreciation_line_ids(self):
+        for asset in self:
+            asset._compute_values()
+            # for line in depreciation_line_ids:
+            #     if line.previous_id and line.type == 'depreciate':
+            #         line.depreciated_value =
+            # line.previous_id.depreciated_value + line.previous_id.amount
+            #         line.remaining_value =
+            # line.depreciation_base - line.depreciated_value - line.amount
+
     @api.depends("depreciation_line_ids.move_id")
     def _compute_move_line_check(self):
         for asset in self:
