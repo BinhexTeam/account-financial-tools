@@ -18,7 +18,7 @@
 #
 ##############################################################################
 {
-    "name": "Stock Accounting Enhacements",
+    "name": "Stock Accounting Enhancements",
     "version": "16.0.1.0.0",
     "category": "Accounting",
     "sequence": 14,
