@@ -14,7 +14,7 @@
                     type="object"
                     groups="account.group_account_invoice"
                     data-hotkey="r"
-                    confirm="This journal entry is related to an inventory valuation record, built-in behaviour will not allow further modifications for this journal entry. A manual stock revaluation will be perfomed in order to be able to modify this record."
+                    confirm="This journal entry is related to an inventory valuation record, built-in behaviour does not allow further modifications for this journal entry. A manual stock revaluation will be perfomed in order to be able to modify this record."
                 />
             </button>
         </field>
