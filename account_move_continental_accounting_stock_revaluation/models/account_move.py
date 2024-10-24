@@ -60,10 +60,14 @@ class AccountMove(models.Model):
             None
         """
         svl_reevaluation_vals = []
-        for svl in self.filtered(
-            lambda it: not it.company_id.anglo_saxon_accounting
-            and it.is_purchase_document(include_receipts=True)
-        ).mapped("line_ids.stock_valuation_layer_ids"):
+        for svl in (
+            self.filtered(
+                lambda it: not it.company_id.anglo_saxon_accounting
+                and it.is_purchase_document(include_receipts=True)
+            )
+            .sudo()
+            .mapped("line_ids.stock_valuation_layer_ids")
+        ):
             product = svl.product_id
             product_property_valuation = product.categ_id.property_valuation
             if product_property_valuation == "real_time":
@@ -85,7 +89,7 @@ class AccountMove(models.Model):
                 svl_reevaluation_val["date"] = svl.create_date
                 svl_reevaluation_vals.append(svl_reevaluation_val)
         if svl_reevaluation_vals:
-            SVLReevaluation = self.env["stock.valuation.layer.revaluation"]
+            SVLReevaluation = self.env["stock.valuation.layer.revaluation"].sudo()
             svl_revaluations = SVLReevaluation.create(svl_reevaluation_vals)
             for svl_revaluation in svl_revaluations:
                 svl_revaluation.action_validate_revaluation()
