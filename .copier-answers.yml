@@ -1,6 +1,7 @@
 # Do NOT update manually; changes here will be overwritten by Copier
-_commit: v1.21.1
+_commit: v1.24
 _src_path: gh:oca/oca-addons-repo-template
+additional_ruff_rules: []
 ci: GitHub
 convert_readme_fragments_to_markdown: false
 generate_requirements_txt: true
@@ -23,5 +24,5 @@ repo_name: account-financial-tools
 repo_slug: account-financial-tools
 repo_website: https://github.com/OCA/account-financial-tools
 use_pyproject_toml: false
-use_ruff: false
+use_ruff: true
 
